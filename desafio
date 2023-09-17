@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class RecursiveInput {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Digite 5 números separados por vírgula:");
+
+        String input = scanner.nextLine();
+        String[] values = input.split(",");
+
+        if (validateInput(values, 5)) {
+            printNumbers(values);
+        } else {
+            System.out.println("Entrada inválida. Certifique-se de digitar 5 números separados por vírgula.");
+        }
+    }
+
+    public static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public static boolean validateInput(String[] values, int expectedSize) {
+        if (values.length != expectedSize) {
+            System.out.println("A quantidade de valores inseridos está incorreta.");
+            return false;
+        }
+
+        for (String value : values) {
+            if (!isNumeric(value)) {
+                System.out.println("O valor '" + value + "' não é um número.");
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void printNumbers(String[] values) {
+        for (String value : values) {
+            System.out.println(value);
+        }
+    }
+}
