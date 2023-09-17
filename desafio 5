@@ -1,0 +1,82 @@
+import java.util.ArrayList;
+import java.util.List;
+
+// Classe para representar um item no supermercado
+class Item {
+    private String nome;
+    private double preco;
+
+    public Item(String nome, double preco) {
+        this.nome = nome;
+        this.preco = preco;
+    }
+
+    public double getPreco() {
+        return this.preco;
+    }
+}
+
+// Classe para representar o carrinho de compras
+class CarrinhoDeCompras {
+    private List<Item> itens;
+
+    public CarrinhoDeCompras() {
+        this.itens = new ArrayList<>();
+    }
+
+    // Adicionar um item ao carrinho
+    public void adicionarItem(Item item) {
+        this.itens.add(item);
+    }
+
+    // Calcular o valor total da compra sem desconto
+    public double calcularValorTotal() {
+        double total = 0.0;
+        for (Item item : this.itens) {
+            total += item.getPreco();
+        }
+        return total;
+    }
+
+    // Calcular o valor total da compra com desconto
+    public double calcularValorTotalComDesconto(double desconto) {
+        double total = calcularValorTotal();
+        return total * (1 - desconto);
+    }
+}
+
+public class Supermercado {
+    public static void main(String[] args) {
+        // Criar um carrinho de compras
+        CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
+
+        // Função de callback para adicionar itens ao carrinho
+        CarrinhoCallback adicionarItens = new CarrinhoCallback() {
+            @Override
+            public void adicionarItens(CarrinhoDeCompras carrinho) {
+                Item item1 = new Item("Arroz", 10.0);
+                Item item2 = new Item("Feijão", 5.0);
+                Item item3 = new Item("Leite", 3.0);
+
+                carrinho.adicionarItem(item1);
+                carrinho.adicionarItem(item2);
+                carrinho.adicionarItem(item3);
+            }
+        };
+
+        // Adicionar itens ao carrinho usando a função de callback
+        adicionarItens.adicionarItens(carrinho);
+
+        // Calcular o valor total da compra
+        double valorTotalSemDesconto = carrinho.calcularValorTotal();
+        double valorTotalComDesconto = carrinho.calcularValorTotalComDesconto(0.1); // 10% de desconto
+
+        System.out.println("Valor total da compra (sem desconto): R$" + valorTotalSemDesconto);
+        System.out.println("Valor total da compra (com desconto): R$" + valorTotalComDesconto);
+    }
+}
+
+// Interface para a função de callback
+interface CarrinhoCallback {
+    void adicionarItens(CarrinhoDeCompras carrinho);
+}
