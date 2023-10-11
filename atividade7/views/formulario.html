@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulário de Marcação de Consulta</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+    <h1>Marcação de Consulta</h1>
+    <form action="/agendar-consulta" method="POST">
+
+        <h2>Dados Pessoais</h2>
+        <label for="nomeCompleto">Nome Completo:</label>
+        <input type="text" id="nomeCompleto" name="nomeCompleto" required><br>
+        <label fot="cpf">Informe seu CPF</label>
+        <input type="number" id="cpf" name="cpf" required><br>
+        <label for="dtnascimento"> Informe sua data de nascimento</label>
+        <input type="datetime" id="dtnascimento" name="dtnascimento" required>><br>
+        <label for="UF">Informe sua UF</label>
+        <input type="text" id="UF" name="UF" required><br>
+        <label for="CEP"> informe seu CEP</label>
+        <input type="number" id="CEP" name="CEP" required><br>
+        <label for="e-mail">Digite seu e-mail</label>
+        <input type="text" id="e-mail" name="e-mail" required><br>
+        <label for="telefone">Informe seu numero de telefone</label>
+        <input type="number" id="number" name="number" requider><br>  
+
+
+
+        <h2>Dados da Consulta</h2>
+        <label for="especialidade">Especialidade Médica:</label>
+        <select id="especialidade" name="especialidade" required>
+            <option value="">Selecione uma especialidade</option>
+            <option value="Cardiologia">Cardiologia</option>
+            <option value="Dermatologia">Dermatologia</option>
+           
+        </select><br>
+
+ 
+
+        <input type="submit" value="Agendar Consulta">
+    </form>
+</body>
+</html>
